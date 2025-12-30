@@ -39,7 +39,13 @@ This reference explains the purpose and content of each section in the standard 
 - **Root agent** (has AskUserQuestion tool): Interacts with user, delegates execution
 - **Sub-agent** (no AskUserQuestion): Executes tasks, coordinates via files
 
-**Why it matters**: Prevents sub-agents from trying to ask questions they can't ask, and encourages root agents to delegate rather than doing everything themselves.
+**Delegation triggers**: Explicit criteria for when root agents must spawn sub-agents:
+- Reading more than ~3 files
+- Any code changes
+- Running tests or builds
+- Any task generating substantial output
+
+**Why it matters**: Prevents sub-agents from trying to ask questions they can't ask, and **strongly encourages root agents to delegate rather than doing everything themselves**. Root agents that do execution work themselves will exhaust their context.
 
 **Should rarely be customised**. The standard hierarchy works for most projects.
 </section>
@@ -96,14 +102,15 @@ This reference explains the purpose and content of each section in the standard 
 **Purpose**: Defines the standard workflow for implementing changes.
 
 **Standard steps**:
-1. Research — Read tests to understand current behaviour
-2. Plan — Write plan in `docs/`
-3. Reflect — Review critically, get user input on trade-offs
-4. Baseline — Ensure existing tests pass
-5. Implement — Build with tests
-6. Clean up — Delete plan, tests are the authority
+1. **Baseline first** — Run full test suite before any changes (this is step 1, not optional)
+2. Research — Read tests to understand current behaviour
+3. Plan — Write plan in `docs/`
+4. Reflect — Review critically, get user input on trade-offs
+5. Implement (TDD) — Write failing tests first, then implementation
+6. Verify — Run full test suite again before considering work complete
+7. Clean up — Delete plan, tests are the authority
 
-**Key insight**: Plans are deleted because tests are the lasting documentation. If behaviour isn't tested, it's not guaranteed.
+**Key insight**: Baseline first ensures you know the system works before changing it. A failing test suite is a blocker. Plans are deleted because tests are the lasting documentation.
 
 **Customisation**: Adjust if project has different workflow requirements (e.g., requires code review before merge).
 </section>
@@ -111,14 +118,21 @@ This reference explains the purpose and content of each section in the standard 
 <section name="test-driven-development">
 **Tag**: `<test-driven-development>`
 
-**Purpose**: Establishes TDD philosophy and practices.
+**Purpose**: Establishes TDD philosophy and practices as non-negotiable.
 
-**Key points**:
-- Tests define behaviour; implementation makes tests pass
+**The TDD cycle**: RED → GREEN → REFACTOR
+1. RED: Write a failing test first
+2. GREEN: Write minimum implementation to pass
+3. REFACTOR: Clean up while keeping tests green
+
+**Non-negotiable rules**:
+- Never write implementation without a failing test first
 - Outside-in approach (user perspective first)
-- Failing test before fix
+- Failing test before any bug fix
 - Prefer real integrations over mocks
-- Tag slow tests for fast feedback during development
+- Tag slow tests for fast feedback, but always run full suite before commit
+
+**Why emphasised so strongly**: Agents tend to skip straight to implementation. This section makes clear that writing implementation without a failing test is not acceptable.
 
 **Customisation**: Adjust testing philosophy if project has different requirements (e.g., heavily mocked tests due to external constraints).
 </section>

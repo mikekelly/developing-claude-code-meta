@@ -14,6 +14,14 @@ If you have access to the `AskUserQuestion` tool, you are the **root agent**:
 2. **Delegate work to sub-agents** — sub-agents do the execution; you conserve context for conversation
 3. **Facilitate agent collaboration** — sub-agents can delegate to each other; coordinate via committed markdown files
 
+**Delegation triggers** — spawn a sub-agent when:
+- Reading more than ~3 files to understand something
+- Implementing any code change (even "simple" ones)
+- Running tests or builds
+- Any task that will generate substantial output
+
+**Never do execution work yourself.** Your role is to converse with the user and orchestrate. If you find yourself about to read code, write code, or run commands beyond basic orientation — stop and delegate instead.
+
 If you do not have that tool, you are a **sub-agent**:
 - Execute the task you were given
 - Coordinate with other agents via committed markdown files
@@ -46,22 +54,32 @@ Agents should proactively update TODO.md: mark items done (move to DONE.md), add
 </task-management>
 
 <development-workflow>
-1. **Research**: Review relevant tests to understand current system behaviour (and potential third party dependencies)
-2. **Plan**: Write a markdown plan of execution in `docs/`, broken down into granular self-descriptive tasks that strike a balance between not being too big that the subagents context will fill up but no so small that it creates unnecessary coordination overhead.
-3. **Reflect**: Review the plan critically; involve the user for trade-off decisions
-4. **Baseline**: Ensure existing tests pass before starting new work
-5. **Implement**: Build the feature with tests that fully exercise new behaviour
-6. **Clean up**: Delete the plan doc — executable tests are the authority on behaviour
+1. **Baseline first**: Run the full test suite before any changes. If tests fail, fix them first or get user acknowledgment. This establishes your known-good state.
+2. **Research**: Review relevant tests to understand current system behaviour (and potential third party dependencies)
+3. **Plan**: Write a markdown plan of execution in `docs/`, broken down into granular self-descriptive tasks that strike a balance between not being too big that the subagents context will fill up but no so small that it creates unnecessary coordination overhead.
+4. **Reflect**: Review the plan critically; involve the user for trade-off decisions
+5. **Implement (TDD)**: Write failing tests first, then implementation to make them pass. Never write implementation without a failing test.
+6. **Verify**: Run the full test suite again. All tests must pass before considering the work complete.
+7. **Clean up**: Delete the plan doc — executable tests are the authority on behaviour
+
+**Why baseline first?** You need to know the system works before changing it. A failing test suite is a blocker, not a "we'll fix it later."
 
 **Why delete plans?** Documentation drifts. Tests don't. If behaviour isn't covered by a test, it's not guaranteed.
 </development-workflow>
 
 <test-driven-development>
-- Tests define behaviour, implementation makes tests pass
-- Outside-in approach: write tests from user's perspective first
-- When bugs arise: write failing test first → fix → verify test passes
-- Avoid mocking out external dependencies/services. Use their dynamic sandbox environments wherever possible. End to end tests are much more important than mocked tests.
-- To ensure the test feedback loop is fast, tag slow tests (eg. integration tests that talk to external services), so that you can run the test suite temporarily avoiding them during the development phase. You MUST eventually run those tests too as part of a full suite run.
+**The cycle is: RED → GREEN → REFACTOR. Always.**
+
+1. **RED**: Write a failing test that describes the behaviour you want
+2. **GREEN**: Write the minimum implementation to make the test pass
+3. **REFACTOR**: Clean up while keeping tests green
+
+**Non-negotiable rules**:
+- Never write implementation code without a failing test first
+- Outside-in approach: start from user-visible behaviour, work inward
+- When bugs arise: reproduce with a failing test first, then fix
+- Avoid mocks. Use real sandbox/test environments for external services.
+- Tag slow tests (e.g., `@slow`) so you can run fast tests during development, but **always run the full suite before committing**
 
 **If you can't verify the outcome, you haven't tested it.**
 </test-driven-development>
