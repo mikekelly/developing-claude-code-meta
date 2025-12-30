@@ -95,6 +95,10 @@ Agents should proactively update TODO.md: mark items done (move to DONE.md), add
 **If you can't verify the outcome, you haven't tested it.**
 </test-driven-development>
 
+<finding-information>
+> **Tests are the documentation.** Read tests to understand the behaviour of the system and its components. If behaviour isn't tested, it's not guaranteed.
+</finding-information>
+
 <definition-of-done>
 1. Tests pass
 2. Your task is completed

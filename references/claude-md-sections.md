@@ -158,6 +158,19 @@ This reference explains the purpose and content of each section in the standard 
 **Customisation**: Adjust testing philosophy if project has different requirements (e.g., heavily mocked tests due to external constraints).
 </section>
 
+<section name="finding-information">
+**Tag**: `<finding-information>`
+
+**Purpose**: Reinforces that tests are the source of truth.
+
+**Standard content**:
+```
+> **Tests are the documentation.** Read tests to understand the behaviour of the system and its components. If behaviour isn't tested, it's not guaranteed.
+```
+
+**Why it matters**: Prevents agents from trusting stale documentation over executable tests.
+</section>
+
 <section name="definition-of-done">
 **Tag**: `<definition-of-done>`
 
@@ -186,5 +199,6 @@ When auditing a CLAUDE.md, verify these sections exist and contain appropriate c
 | task-management | Yes | Match project approach |
 | development-workflow | Yes | Adjust to project needs |
 | test-driven-development | Yes | Adjust to testing philosophy |
+| finding-information | Yes | No |
 | definition-of-done | Yes | Add project-specific criteria |
 </section_checklist>
