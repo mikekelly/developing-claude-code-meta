@@ -9,7 +9,7 @@ Every agent conversation loads CLAUDE.md into context. If CLAUDE.md contains 500
 
 **The solution**: Separate agent behaviour from project knowledge.
 
-- **CLAUDE.md** (~80 lines): HOW the agent should work — loads every time, kept minimal
+- **CLAUDE.md** (~100 lines): HOW the agent should work — loads every time, kept minimal
 - **README.md files** (distributed): WHAT the project contains — loaded only when working in that area
 
 **Token economics**:
@@ -108,7 +108,7 @@ npm run build   # Production build
 </content_migration_examples>
 
 <readme_structure_guidelines>
-**Root README.md** (~50-100 lines):
+**Root README.md** (~50-150 lines):
 ```markdown
 # Project Name
 
@@ -182,7 +182,7 @@ The ideal agent navigation path:
 ```
 1. Conversation starts
    ↓
-2. Load CLAUDE.md (~80 lines)
+2. Load CLAUDE.md (~100 lines)
    Learn: how to behave, workflow patterns, where to find info
    ↓
 3. Read README.md for orientation

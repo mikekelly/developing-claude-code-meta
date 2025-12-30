@@ -1,7 +1,7 @@
 <required_reading>
 Read these before proceeding:
-1. references/progressive-disclosure.md — Principles being audited against
-2. references/claude-md-sections.md — Expected CLAUDE.md sections
+1. standard/CLAUDE.md — The canonical CLAUDE.md (project should match exactly)
+2. references/progressive-disclosure.md — Principles being audited against
 </required_reading>
 
 <process>
@@ -21,38 +21,20 @@ find {project_path} -type d -name "src" -o -name "packages" -o -name "lib" -o -n
 
 ## Step 2: Audit CLAUDE.md
 
-Read and analyse:
+**Exact match check:**
+
+The project's CLAUDE.md should be an exact copy of `standard/CLAUDE.md`. Compare them:
+
 ```bash
-cat {project_path}/CLAUDE.md
+diff {project_path}/CLAUDE.md {skill_path}/standard/CLAUDE.md
 ```
 
-**Structural check:**
+| Result | Status | Action |
+|--------|--------|--------|
+| No differences | PASS | CLAUDE.md is correct |
+| Differences found | FAIL | Replace with exact copy of `standard/CLAUDE.md` |
 
-| Criterion | Pass | Fail |
-|-----------|------|------|
-| Under 100 lines | ≤100 lines | >100 lines |
-| Has line count reminder | First line warns about limit | Missing |
-| Has orientation section | Points to README.md | Missing navigation |
-| Uses XML structure | Semantic tags | Plain text or markdown headings |
-| No project-specific tech | No API docs, env vars, schemas | Contains technical details |
-
-**Content conformance check** (compare against `templates/claude-md-template.md`):
-
-| Section | Required Content | Check |
-|---------|------------------|-------|
-| `<agent-hierarchy>` | Has **delegation triggers** list (reading >3 files, code changes, tests, substantial output) | ☐ |
-| `<agent-hierarchy>` | Has "Never do execution work yourself" directive | ☐ |
-| `<development-workflow>` | Step 1 is **Baseline first** (run tests before any changes) | ☐ |
-| `<development-workflow>` | Has **Verify** step (run full suite before considering complete) | ☐ |
-| `<development-workflow>` | Implement step mentions TDD/failing tests first | ☐ |
-| `<test-driven-development>` | Has RED → GREEN → REFACTOR cycle | ☐ |
-| `<test-driven-development>` | Has "Never write implementation without failing test" rule | ☐ |
-| `<test-driven-development>` | Has "always run full suite before committing" | ☐ |
-
-**Content classification** (for any non-template content):
-- **Correct** — Agent behaviour, belongs in CLAUDE.md
-- **Misplaced** — Project knowledge, should be in README.md
-- **Redundant** — Obvious to Claude, should be removed
+If there are differences, note what was added/changed. Any project-specific content should be moved to README.md files.
 
 ## Step 3: Audit README Distribution
 
@@ -70,9 +52,9 @@ ls {package_path}/README.md 2>/dev/null || echo "MISSING"
 | packages/web | Yes/No | Good/Sparse/Bloated |
 
 **README quality criteria:**
-- **Good**: 20-100 lines, covers purpose + key files + patterns
+- **Good**: 20-150 lines, covers purpose + key files + patterns
 - **Sparse**: <20 lines, missing essential context
-- **Bloated**: >150 lines, should be split or moved to tests
+- **Bloated**: >200 lines, should be split or moved to tests
 
 ## Step 4: Check Navigation Chain
 
@@ -98,7 +80,7 @@ Create a summary:
 # CLAUDE.md Audit Report
 
 ## Summary
-- **CLAUDE.md**: {line_count} lines ({PASS/FAIL} ≤100)
+- **CLAUDE.md**: {PASS/FAIL} (exact match with standard)
 - **README coverage**: {count}/{total} packages have READMEs
 - **Navigation**: {COMPLETE/INCOMPLETE}
 
@@ -122,69 +104,31 @@ Create a summary:
 
 Based on findings, recommend:
 
-**If CLAUDE.md too large:**
-→ Run migrate workflow
-
-**If content conformance fails:**
-→ Compare against `templates/claude-md-template.md` and update missing/incorrect content. Key areas:
-  - Delegation triggers and "never do execution work" in `<agent-hierarchy>`
-  - "Baseline first" and "Verify" steps in `<development-workflow>`
-  - RED → GREEN → REFACTOR and "never implement without failing test" in `<test-driven-development>`
+**If CLAUDE.md doesn't match standard:**
+→ Replace with exact copy of `standard/CLAUDE.md`. Move any project-specific content to README.md files.
 
 **If READMEs missing:**
 → List specific packages needing documentation
 
 **If navigation broken:**
 → Identify broken links and suggest fixes
-
-**If content misplaced:**
-→ Specify what content should move where
 </process>
 
 <audit_checklist>
-**CLAUDE.md Structure:**
-- [ ] Line count ≤ 100
-- [ ] First line contains limit reminder
-- [ ] Uses XML tags (not markdown headings)
-- [ ] No project-specific technical details
-
-**Required Sections Present:**
-- [ ] Has `<critical-instruction>` section(s)
-- [ ] Has `<agent-hierarchy>` section
-- [ ] Has `<principles>` section
-- [ ] Has `<orientation>` pointing to README.md
-- [ ] Has `<task-management>` section
-- [ ] Has `<development-workflow>` section
-- [ ] Has `<test-driven-development>` section
-- [ ] Has `<definition-of-done>` section
-
-**Content Conformance (critical for agent behaviour):**
-- [ ] `<agent-hierarchy>` has delegation triggers (>3 files, code changes, tests, substantial output)
-- [ ] `<agent-hierarchy>` has "Never do execution work yourself" directive
-- [ ] `<development-workflow>` step 1 is "Baseline first" (run tests before changes)
-- [ ] `<development-workflow>` has "Verify" step (full suite before complete)
-- [ ] `<development-workflow>` implement step mentions TDD/failing tests first
-- [ ] `<test-driven-development>` has RED → GREEN → REFACTOR cycle
-- [ ] `<test-driven-development>` has "Never write implementation without failing test"
-- [ ] `<test-driven-development>` has "always run full suite before committing"
+**CLAUDE.md:**
+- [ ] Exact match with `standard/CLAUDE.md`
 
 **README Distribution:**
 - [ ] Root README.md exists
-- [ ] Root README under 100 lines
+- [ ] Root README under 150 lines
 - [ ] Each major package has README.md
 - [ ] Package READMEs cover purpose + key files
-- [ ] No README over 150 lines (should split)
+- [ ] No README over 200 lines (should split)
 
 **Navigation:**
 - [ ] CLAUDE.md → README.md link works
 - [ ] README.md → package READMEs linked
 - [ ] All links valid
-
-**Content Placement:**
-- [ ] Tech stack in README.md (not CLAUDE.md)
-- [ ] API docs in relevant package README
-- [ ] Environment setup in README.md
-- [ ] Testing commands in README.md or CONTRIBUTING.md
 </audit_checklist>
 
 <success_criteria>

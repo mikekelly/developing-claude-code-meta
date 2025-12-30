@@ -1,6 +1,6 @@
 <required_reading>
 Read these before proceeding:
-1. templates/claude-md-template.md — The standard CLAUDE.md to install
+1. standard/CLAUDE.md — The canonical CLAUDE.md to install
 2. references/progressive-disclosure.md — Context on README distribution
 </required_reading>
 
@@ -28,12 +28,9 @@ Note packages/modules that have distinct domains and will benefit from their own
 
 ## Step 3: Install CLAUDE.md
 
-Copy the template from `templates/claude-md-template.md` to the project root.
+Copy `standard/CLAUDE.md` to the project root exactly as-is. Do not modify it.
 
-**Customisation points:**
-- Update `<orientation>` to reference the project's actual README.md location
-- Add any project-specific critical instructions if absolutely necessary
-- Keep under 100 lines
+The standard CLAUDE.md is designed to work universally. Project-specific information belongs in README.md files, not in CLAUDE.md.
 
 ## Step 4: Create Root README.md (if missing)
 
@@ -66,15 +63,14 @@ cat {project_path}/CLAUDE.md | head -5
 ```
 
 Confirm:
-- [ ] CLAUDE.md exists and is under 100 lines
-- [ ] First line contains the "Keep this file under 100 lines" reminder
+- [ ] CLAUDE.md matches `standard/CLAUDE.md` exactly
+- [ ] First line contains the "Keep this file under 150 lines" reminder
 </process>
 
 <success_criteria>
 Installation is complete when:
-- [ ] CLAUDE.md installed at project root (under 100 lines)
+- [ ] CLAUDE.md installed at project root (exact copy of `standard/CLAUDE.md`)
 - [ ] Root README.md exists with project overview
 - [ ] At least one package README.md created (if packages exist)
-- [ ] No project-specific technical details in CLAUDE.md
 - [ ] Agent can navigate from CLAUDE.md → README.md → package READMEs
 </success_criteria>
