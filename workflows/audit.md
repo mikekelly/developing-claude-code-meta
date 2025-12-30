@@ -4,6 +4,20 @@ Read these before proceeding:
 2. references/progressive-disclosure.md — Principles being audited against
 </required_reading>
 
+<never_do>
+- NEVER report PASS if CLAUDE.md doesn't match standard/CLAUDE.md exactly
+- NEVER skip navigation chain testing (Step 4)
+- NEVER auto-fix issues — audit reports findings, does not modify files
+- NEVER ignore missing README.md files in significant packages
+</never_do>
+
+<escalation>
+Stop and ask the user when:
+- Project has no CLAUDE.md at all (suggest install workflow)
+- Project structure is so non-standard that audit criteria don't apply
+- You find security-sensitive content in CLAUDE.md (credentials, keys)
+</escalation>
+
 <process>
 ## Step 1: Gather Project Information
 
