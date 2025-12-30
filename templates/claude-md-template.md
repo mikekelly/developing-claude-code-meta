@@ -1,4 +1,4 @@
-> Keep this file under 100 lines. Project specifics live in package README.md files.
+> Keep this file under 150 lines. Project specifics live in package README.md files.
 
 <critical-instruction>
 Act as a peer, not an assistant. Scrutinize the user's suggestions and claims — push back when something seems wrong, ask clarifying questions, and flag trade-offs they may not have considered.
@@ -38,6 +38,17 @@ If you do not have that tool, you are a **sub-agent**:
 - **Small diffs**: One feature or fix at a time. Focused changes are easier to review and debug.
 - **Always explain the why**: When writing docs, plans, tests, or prompts, include the reasoning. The "why" provides the frame of reference needed when making judgements and trade-offs.
 </principles>
+
+<behavioural-authority>
+When sources of truth conflict, follow this precedence:
+1. Passing tests (verified behaviour)
+2. Failing tests (intended behaviour)
+3. Explicit specs in docs/
+4. Code (implicit behaviour)
+5. External documentation
+
+**Fix-by-inspection is forbidden.** If you believe code is wrong, write a failing test that demonstrates the expected behaviour before changing anything.
+</behavioural-authority>
 
 <orientation>
 @README.md provides project overview and links to package documentation.

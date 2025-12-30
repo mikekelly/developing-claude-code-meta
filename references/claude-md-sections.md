@@ -5,10 +5,10 @@ This reference explains the purpose and content of each section in the standard 
 <section name="line-count-reminder">
 **First line:**
 ```
-> Keep this file under 100 lines. Project specifics live in package README.md files.
+> Keep this file under 150 lines. Project specifics live in package README.md files.
 ```
 
-**Purpose**: Reminds both humans and agents that CLAUDE.md should stay lean. The 100-line limit is a forcing function to push project-specific content to README files.
+**Purpose**: Reminds both humans and agents that CLAUDE.md should stay lean. The 150-line limit is a forcing function to push project-specific content to README files.
 
 **Why it matters**: Without this reminder, CLAUDE.md tends to accumulate content over time as developers add "just one more thing."
 </section>
@@ -66,6 +66,27 @@ This reference explains the purpose and content of each section in the standard 
 - **Always explain the why**: Include reasoning
 
 **Customisation**: Generally keep the standard principles. Add project-specific principles sparingly, only if they fundamentally change how work should be approached.
+</section>
+
+<section name="behavioural-authority">
+**Tag**: `<behavioural-authority>`
+
+**Purpose**: Provides explicit precedence when sources of truth conflict.
+
+**Precedence order**:
+1. Passing tests (verified behaviour)
+2. Failing tests (intended behaviour)
+3. Explicit specs in docs/
+4. Code (implicit behaviour)
+5. External documentation
+
+**Key rule**: "Fix-by-inspection is forbidden" — if you believe code is wrong, write a failing test first.
+
+**Why it matters**: Agents encounter conflicting information (README says X, code does Y). Without explicit precedence, they guess or ask the user unnecessarily. This section eliminates ambiguity.
+
+**Why failing tests rank second**: A failing test is evidence of intent — someone wrote down what the system *should* do. It's executable and was deliberately committed, making it more authoritative than prose specs.
+
+**Should rarely be customised.** The standard precedence works for most projects.
 </section>
 
 <section name="orientation">
@@ -173,6 +194,7 @@ When auditing a CLAUDE.md, verify these sections exist and contain appropriate c
 | critical-instruction | Yes (at least peer + skills) | Add sparingly |
 | agent-hierarchy | Yes | Rarely |
 | principles | Yes | Add sparingly |
+| behavioural-authority | Yes | Rarely |
 | orientation | Yes | Update path if needed |
 | task-management | Yes | Match project approach |
 | development-workflow | Yes | Adjust to project needs |
