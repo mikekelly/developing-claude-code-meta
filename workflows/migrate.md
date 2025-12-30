@@ -1,7 +1,7 @@
 <required_reading>
 Read these before proceeding:
 1. The existing CLAUDE.md in the target project
-2. templates/claude-md-template.md — The target structure
+2. standard/CLAUDE.md — The canonical CLAUDE.md to install
 3. references/progressive-disclosure.md — Principles for content distribution
 </required_reading>
 
@@ -64,13 +64,9 @@ For each destination identified:
 
 ## Step 4: Replace CLAUDE.md
 
-Replace the existing CLAUDE.md with the standard template from `templates/claude-md-template.md`.
+Replace the existing CLAUDE.md with an exact copy of `standard/CLAUDE.md`. Do not modify it.
 
-Customise only:
-- `<orientation>` — Point to actual README.md location
-- `<critical-instruction>` — Add project-specific agent behaviour if essential
-
-**Do NOT add project knowledge back into CLAUDE.md.**
+The standard CLAUDE.md is designed to work universally. All project-specific content belongs in README.md files.
 
 ## Step 5: Verify Migration
 
@@ -82,7 +78,7 @@ find {project_path} -name "README.md" | wc -l
 ```
 
 Confirm:
-- [ ] New CLAUDE.md is under 100 lines
+- [ ] New CLAUDE.md matches `standard/CLAUDE.md` exactly
 - [ ] All moved content is accessible via README.md chain
 - [ ] No orphaned content (everything moved or deliberately deleted)
 
@@ -149,8 +145,7 @@ Run specific test: npm test -- --grep "pattern"
 <success_criteria>
 Migration is complete when:
 - [ ] Old CLAUDE.md content fully categorised (keep/move/delete)
-- [ ] New CLAUDE.md installed (under 100 lines)
+- [ ] New CLAUDE.md installed (exact copy of `standard/CLAUDE.md`)
 - [ ] Moved content placed in appropriate README.md files
 - [ ] Content navigation tested (CLAUDE.md → README.md → package READMEs)
-- [ ] No project-specific technical details remain in CLAUDE.md
 </success_criteria>

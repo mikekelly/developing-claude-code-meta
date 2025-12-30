@@ -15,8 +15,8 @@ Each package/directory can have a README.md with domain-specific context. Agents
 **3. Tests are the documentation**
 Long-lived markdown should cover architecture and principles only. Detailed behaviour documentation belongs in executable tests. If behaviour isn't tested, it's not guaranteed.
 
-**4. Keep CLAUDE.md under 100 lines**
-If CLAUDE.md exceeds 100 lines, content needs to be refactored into README.md files. The target is ~50-80 lines of essential agent instructions.
+**4. CLAUDE.md is not customised**
+The standard CLAUDE.md (`standard/CLAUDE.md`) should be copied exactly into projects. It is designed to work universally. All project-specific content belongs in README.md files.
 </essential_principles>
 
 <intake>
@@ -45,19 +45,7 @@ What would you like to do?
 </routing>
 
 <quick_reference>
-**Target CLAUDE.md structure** (~80 lines):
-```
-> Keep this file under 100 lines. Project specifics live in package README.md files.
-
-<critical-instruction>...</critical-instruction>
-<agent-hierarchy>...</agent-hierarchy>
-<principles>...</principles>
-<orientation>@README.md provides project overview...</orientation>
-<task-management>...</task-management>
-<development-workflow>...</development-workflow>
-<test-driven-development>...</test-driven-development>
-<definition-of-done>...</definition-of-done>
-```
+**CLAUDE.md**: Copy `standard/CLAUDE.md` exactly. Do not modify.
 
 **README.md distribution:**
 ```
@@ -75,10 +63,9 @@ project/
 </quick_reference>
 
 <reference_index>
-All in `references/`:
-
-- progressive-disclosure.md — Why and how to distribute content to READMEs
-- claude-md-sections.md — Purpose of each CLAUDE.md section
+- `standard/CLAUDE.md` — The canonical CLAUDE.md (copy exactly into projects)
+- `references/progressive-disclosure.md` — Why and how to distribute content to READMEs
+- `references/claude-md-sections.md` — Purpose of each CLAUDE.md section
 </reference_index>
 
 <workflows_index>
@@ -94,10 +81,8 @@ All in `workflows/`:
 <success_criteria>
 A well-configured project:
 
-- CLAUDE.md under 100 lines (ideally ~80)
-- No project-specific technical details in CLAUDE.md
+- CLAUDE.md is an exact copy of `standard/CLAUDE.md`
 - README.md at project root with overview and navigation
 - Package-level README.md files for domain-specific context
-- Agent behaviour clearly defined (workflow, TDD, task management)
 - Tests document behaviour, not markdown files
 </success_criteria>
