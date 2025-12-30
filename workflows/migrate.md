@@ -5,6 +5,22 @@ Read these before proceeding:
 3. references/progressive-disclosure.md — Principles for content distribution
 </required_reading>
 
+<never_do>
+- NEVER delete content without first confirming its destination (MOVE or DELETE must be explicit)
+- NEVER leave content orphaned — every section must be categorised as KEEP, MOVE, or DELETE
+- NEVER modify standard/CLAUDE.md content when replacing the old file
+- NEVER create circular references between README files
+- NEVER skip the navigation test (Step 6)
+</never_do>
+
+<escalation>
+Stop and ask the user when:
+- Content doesn't clearly fit KEEP/MOVE/DELETE categories
+- Migration would delete substantial content (>50 lines) without a clear destination
+- Existing README.md files are already bloated (>200 lines)
+- You find conflicting information across files
+</escalation>
+
 <process>
 ## Step 1: Analyse Existing CLAUDE.md
 

@@ -19,6 +19,23 @@ Long-lived markdown should cover architecture and principles only. Detailed beha
 The standard CLAUDE.md (`standard/CLAUDE.md`) should be copied exactly into projects. It is designed to work universally. All project-specific content belongs in README.md files.
 </essential_principles>
 
+<never_do>
+- NEVER modify `standard/CLAUDE.md` content — it must be copied exactly into projects
+- NEVER add project-specific content to CLAUDE.md (use README.md files instead)
+- NEVER create more than 2 levels of README navigation (CLAUDE.md → README.md → package READMEs)
+- NEVER duplicate content between CLAUDE.md and README.md — single source of truth
+- NEVER skip verifying CLAUDE.md matches the standard after installation or migration
+</never_do>
+
+<escalation>
+Stop and ask the user when:
+- Project structure is unconventional (no clear packages or module boundaries)
+- Content doesn't fit KEEP/MOVE/DELETE categories during migration
+- Existing README.md files conflict with the suggested structure
+- You've attempted the same step 3+ times without success
+- Changes would affect more than 10 files
+</escalation>
+
 <intake>
 What would you like to do?
 

@@ -4,6 +4,20 @@ Read these before proceeding:
 2. references/progressive-disclosure.md — Context on README distribution
 </required_reading>
 
+<never_do>
+- NEVER modify standard/CLAUDE.md content when copying to target project
+- NEVER proceed if CLAUDE.md already exists (route to migrate workflow instead)
+- NEVER create README.md files over 150 lines
+- NEVER skip the verification step (Step 6)
+</never_do>
+
+<escalation>
+Stop and ask the user when:
+- Project has unconventional structure (no src/, packages/, lib/, or apps/)
+- Existing README.md has substantial content that might conflict
+- You're unsure which directories warrant their own README.md
+</escalation>
+
 <process>
 ## Step 1: Verify Target Project
 

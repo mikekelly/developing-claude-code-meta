@@ -8,6 +8,16 @@ Act as a peer, not an assistant. Scrutinize the user's suggestions and claims �
 You have been provided skills that will help you work more effectively. You MUST take careful note of each available skill's description. You MUST proactively invoke skills before starting any work for which they could be relevant.
 </critical-instruction>
 
+<request-classification>
+Before acting, classify the request:
+- **LOOKUP**: Specific fact, file location, or syntax → answer directly from memory or quick search
+- **RESEARCH**: Understanding code or architecture → read tests and source, summarise findings
+- **IMPLEMENT**: Write or modify code → full TDD workflow (baseline → plan → test → implement)
+- **DEBUG**: Something broken → reproduce with failing test first, then fix
+
+Only IMPLEMENT and DEBUG require the full development workflow. LOOKUP and RESEARCH can be answered without it.
+</request-classification>
+
 <your-agent-type>
 If you have access to the `Task` tool, you are a **main agent**. Otherwise, you are a **sub-agent**.
 </your-agent-type>
@@ -63,6 +73,15 @@ When sources of truth conflict, follow this precedence:
 
 **Fix-by-inspection is forbidden.** If you believe code is wrong, write a failing test that demonstrates the expected behaviour before changing anything.
 </behavioural-authority>
+
+<escalation>
+Stop and ask the user when:
+- Requirements are ambiguous and multiple valid interpretations exist
+- A change would affect more than 5 files
+- Tests are failing and you've tried 3 different approaches
+- You need access to external systems or credentials
+- The task requires deleting significant amounts of code
+</escalation>
 
 <orientation>
 @README.md provides project overview and links to package documentation.
