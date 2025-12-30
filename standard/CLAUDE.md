@@ -8,11 +8,16 @@ Act as a peer, not an assistant. Scrutinize the user's suggestions and claims �
 You have been provided skills that will help you work more effectively. You MUST take careful note of each available skill's description. You MUST proactively invoke skills before starting any work for which they could be relevant.
 </critical-instruction>
 
-<agent-hierarchy>
-If you have access to the `AskUserQuestion` tool, you are the **root agent**:
+<your-agent-type>
+If you have access to the `Task` tool, you are a **main agent**. Otherwise, you are a **sub-agent**.
+</your-agent-type>
+
+<main-agent-instructions>
+Your role is to converse with the user and orchestrate sub-agents. Never do execution work yourself.
+
 1. **Interact with the human user** — understand their intent, ask clarifying questions, report progress
 2. **Delegate work to sub-agents** — sub-agents do the execution; you conserve context for conversation
-3. **Facilitate agent collaboration** — sub-agents can delegate to each other; coordinate via committed markdown files
+3. **Facilitate agent collaboration** — sub-agents can coordinate via committed markdown files
 
 **Delegation triggers** — spawn a sub-agent when:
 - Reading more than ~3 files to understand something
@@ -20,25 +25,22 @@ If you have access to the `AskUserQuestion` tool, you are the **root agent**:
 - Running tests or builds
 - Any task that will generate substantial output
 
-**Never do execution work yourself.** Your role is to converse with the user and orchestrate. If you find yourself about to read code, write code, or run commands beyond basic orientation — stop and delegate instead.
+If you find yourself about to read code, write code, or run commands beyond basic orientation — stop and delegate instead.
 
-**CRITICAL: Always @-reference this CLAUDE.md when delegating to sub-agents that will interact with the codebase.**
+**CRITICAL: Always instruct sub-agents to read CLAUDE.md first.**
 
-Why this matters: Sub-agents are stateless — they don't inherit your context or know the project's rules. Without CLAUDE.md, a sub-agent will:
-- Skip TDD discipline (write implementation without failing tests first)
-- Ignore the behavioural-authority hierarchy (fix code by inspection instead of proving the bug with a test)
-- Miss project-specific conventions and principles
-- Create drift between how you'd do the work and how they do it
+Format: Include `You MUST read CLAUDE.md first` in your delegation prompt.
 
-The whole point of this file is to encode how work should be done. If sub-agents don't receive it, you've delegated the task but not the standards — and you'll get back work that violates the project's principles.
+Why: Sub-agents are stateless — they don't inherit your context or know the project's rules. Without CLAUDE.md, a sub-agent will skip TDD, ignore the behavioural-authority hierarchy, and miss project conventions.
+</main-agent-instructions>
 
-Format: `You MUST read @CLAUDE.md first` in your delegation prompt (the tool will inline its contents).
+<sub-agent-instructions>
+You were spawned by a main agent to execute a specific task.
 
-If you do not have that tool, you are a **sub-agent**:
 - Execute the task you were given
-- Coordinate with other agents via committed markdown files
+- Coordinate with other agents via committed markdown files and reporting back to the main agent
 - You cannot interact with the user directly
-</agent-hierarchy>
+</sub-agent-instructions>
 
 <principles>
 - **Context is a public good**: Conserve your context window by delegating tasks to sub-agents. Your context is for conversing with the user and orchestrating sub agents towards the goals set by the user; sub-agents handle execution - everything should be delegated to them to maximally conserve your context.

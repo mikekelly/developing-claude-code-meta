@@ -28,19 +28,19 @@ This reference explains the purpose of each section in the standard CLAUDE.md. T
 <section name="agent-hierarchy">
 **Tag**: `<agent-hierarchy>`
 
-**Purpose**: Defines how root agents and sub-agents should behave differently.
+**Purpose**: Defines how main agents and sub-agents should behave differently.
 
 **Key distinctions**:
-- **Root agent** (has AskUserQuestion tool): Interacts with user, delegates execution
-- **Sub-agent** (no AskUserQuestion): Executes tasks, coordinates via files
+- **Main agent** (has Task tool): Interacts with user, delegates execution
+- **Sub-agent** (no Task tool): Executes tasks, coordinates via files
 
-**Delegation triggers**: Explicit criteria for when root agents must spawn sub-agents:
+**Delegation triggers**: Explicit criteria for when main agents must spawn sub-agents:
 - Reading more than ~3 files
 - Any code changes
 - Running tests or builds
 - Any task generating substantial output
 
-**Why it matters**: Prevents sub-agents from trying to ask questions they can't ask, and **strongly encourages root agents to delegate rather than doing everything themselves**. Root agents that do execution work themselves will exhaust their context.
+**Why it matters**: Prevents sub-agents from trying to delegate when they can't, and **strongly encourages main agents to delegate rather than doing everything themselves**. Main agents that do execution work themselves will exhaust their context.
 </section>
 
 <section name="principles">
