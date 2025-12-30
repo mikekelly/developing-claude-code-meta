@@ -1,6 +1,6 @@
 ---
 name: developing-claude-code-meta
-description: "MUST be loaded when setting up, migrating, or auditing CLAUDE.md files in projects. Covers installing the standard CLAUDE.md into new projects, migrating existing CLAUDE.md content to READMEs (progressive disclosure), and auditing projects for conformance. Invoke PROACTIVELY when user mentions CLAUDE.md, project setup, agent configuration, or code meta files."
+description: "MUST be loaded when setting up, installing, migrating, reviewing, auditing, or checking CLAUDE.md files in projects. Covers installing the standard CLAUDE.md into new projects, migrating existing CLAUDE.md content to READMEs (progressive disclosure), and auditing projects for conformance. Invoke PROACTIVELY when user mentions CLAUDE.md, project setup, agent configuration, or code meta files."
 ---
 
 <essential_principles>

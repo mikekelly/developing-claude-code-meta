@@ -23,11 +23,10 @@ find {project_path} -type d -name "src" -o -name "packages" -o -name "lib" -o -n
 
 **Exact match check:**
 
-The project's CLAUDE.md should be an exact copy of `standard/CLAUDE.md`. Compare them:
+The project's CLAUDE.md should be an exact copy of this skill's `standard/CLAUDE.md`. Read both files and compare them:
 
-```bash
-diff {project_path}/CLAUDE.md {skill_path}/standard/CLAUDE.md
-```
+1. Read the project's CLAUDE.md: `{project_path}/CLAUDE.md`
+2. Read this skill's standard: `standard/CLAUDE.md` (relative to this skill's directory)
 
 | Result | Status | Action |
 |--------|--------|--------|
