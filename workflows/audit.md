@@ -26,19 +26,30 @@ Read and analyse:
 cat {project_path}/CLAUDE.md
 ```
 
-**Check list:**
+**Structural check:**
 
 | Criterion | Pass | Fail |
 |-----------|------|------|
 | Under 100 lines | ≤100 lines | >100 lines |
 | Has line count reminder | First line warns about limit | Missing |
-| Contains agent behaviour | Workflow, TDD, task management | Missing sections |
-| No project-specific tech | No API docs, env vars, schemas | Contains technical details |
 | Has orientation section | Points to README.md | Missing navigation |
 | Uses XML structure | Semantic tags | Plain text or markdown headings |
+| No project-specific tech | No API docs, env vars, schemas | Contains technical details |
 
-**Content classification:**
-For each major section, classify as:
+**Content conformance check** (compare against `templates/claude-md-template.md`):
+
+| Section | Required Content | Check |
+|---------|------------------|-------|
+| `<agent-hierarchy>` | Has **delegation triggers** list (reading >3 files, code changes, tests, substantial output) | ☐ |
+| `<agent-hierarchy>` | Has "Never do execution work yourself" directive | ☐ |
+| `<development-workflow>` | Step 1 is **Baseline first** (run tests before any changes) | ☐ |
+| `<development-workflow>` | Has **Verify** step (run full suite before considering complete) | ☐ |
+| `<development-workflow>` | Implement step mentions TDD/failing tests first | ☐ |
+| `<test-driven-development>` | Has RED → GREEN → REFACTOR cycle | ☐ |
+| `<test-driven-development>` | Has "Never write implementation without failing test" rule | ☐ |
+| `<test-driven-development>` | Has "always run full suite before committing" | ☐ |
+
+**Content classification** (for any non-template content):
 - **Correct** — Agent behaviour, belongs in CLAUDE.md
 - **Misplaced** — Project knowledge, should be in README.md
 - **Redundant** — Obvious to Claude, should be removed
@@ -114,6 +125,12 @@ Based on findings, recommend:
 **If CLAUDE.md too large:**
 → Run migrate workflow
 
+**If content conformance fails:**
+→ Compare against `templates/claude-md-template.md` and update missing/incorrect content. Key areas:
+  - Delegation triggers and "never do execution work" in `<agent-hierarchy>`
+  - "Baseline first" and "Verify" steps in `<development-workflow>`
+  - RED → GREEN → REFACTOR and "never implement without failing test" in `<test-driven-development>`
+
 **If READMEs missing:**
 → List specific packages needing documentation
 
@@ -125,18 +142,31 @@ Based on findings, recommend:
 </process>
 
 <audit_checklist>
-**CLAUDE.md Conformance:**
+**CLAUDE.md Structure:**
 - [ ] Line count ≤ 100
 - [ ] First line contains limit reminder
-- [ ] Has `<critical-instruction>` section
+- [ ] Uses XML tags (not markdown headings)
+- [ ] No project-specific technical details
+
+**Required Sections Present:**
+- [ ] Has `<critical-instruction>` section(s)
+- [ ] Has `<agent-hierarchy>` section
 - [ ] Has `<principles>` section
 - [ ] Has `<orientation>` pointing to README.md
 - [ ] Has `<task-management>` section
 - [ ] Has `<development-workflow>` section
 - [ ] Has `<test-driven-development>` section
 - [ ] Has `<definition-of-done>` section
-- [ ] No project-specific technical details
-- [ ] Uses XML tags (not markdown headings)
+
+**Content Conformance (critical for agent behaviour):**
+- [ ] `<agent-hierarchy>` has delegation triggers (>3 files, code changes, tests, substantial output)
+- [ ] `<agent-hierarchy>` has "Never do execution work yourself" directive
+- [ ] `<development-workflow>` step 1 is "Baseline first" (run tests before changes)
+- [ ] `<development-workflow>` has "Verify" step (full suite before complete)
+- [ ] `<development-workflow>` implement step mentions TDD/failing tests first
+- [ ] `<test-driven-development>` has RED → GREEN → REFACTOR cycle
+- [ ] `<test-driven-development>` has "Never write implementation without failing test"
+- [ ] `<test-driven-development>` has "always run full suite before committing"
 
 **README Distribution:**
 - [ ] Root README.md exists
