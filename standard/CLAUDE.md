@@ -32,7 +32,7 @@ Why this matters: Sub-agents are stateless — they don't inherit your context o
 
 The whole point of this file is to encode how work should be done. If sub-agents don't receive it, you've delegated the task but not the standards — and you'll get back work that violates the project's principles.
 
-Format: `@CLAUDE.md` in your delegation prompt (the tool will inline its contents).
+Format: `You MUST read @CLAUDE.md first` in your delegation prompt (the tool will inline its contents).
 
 If you do not have that tool, you are a **sub-agent**:
 - Execute the task you were given
