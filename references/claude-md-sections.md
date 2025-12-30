@@ -68,6 +68,27 @@ This reference explains the purpose and content of each section in the standard 
 **Customisation**: Generally keep the standard principles. Add project-specific principles sparingly, only if they fundamentally change how work should be approached.
 </section>
 
+<section name="behavioural-authority">
+**Tag**: `<behavioural-authority>`
+
+**Purpose**: Provides explicit precedence when sources of truth conflict.
+
+**Precedence order**:
+1. Passing tests (verified behaviour)
+2. Failing tests (intended behaviour)
+3. Explicit specs in docs/
+4. Code (implicit behaviour)
+5. External documentation
+
+**Key rule**: "Fix-by-inspection is forbidden" — if you believe code is wrong, write a failing test first.
+
+**Why it matters**: Agents encounter conflicting information (README says X, code does Y). Without explicit precedence, they guess or ask the user unnecessarily. This section eliminates ambiguity.
+
+**Why failing tests rank second**: A failing test is evidence of intent — someone wrote down what the system *should* do. It's executable and was deliberately committed, making it more authoritative than prose specs.
+
+**Should rarely be customised.** The standard precedence works for most projects.
+</section>
+
 <section name="orientation">
 **Tag**: `<orientation>`
 
@@ -137,19 +158,6 @@ This reference explains the purpose and content of each section in the standard 
 **Customisation**: Adjust testing philosophy if project has different requirements (e.g., heavily mocked tests due to external constraints).
 </section>
 
-<section name="finding-information">
-**Tag**: `<finding-information>`
-
-**Purpose**: Reinforces that tests are the source of truth.
-
-**Standard content**:
-```
-> **Tests are the documentation.** Read tests to understand the behaviour of the system and its components. If behaviour isn't tested, it's not guaranteed.
-```
-
-**Why it matters**: Prevents agents from trusting stale documentation over executable tests.
-</section>
-
 <section name="definition-of-done">
 **Tag**: `<definition-of-done>`
 
@@ -173,10 +181,10 @@ When auditing a CLAUDE.md, verify these sections exist and contain appropriate c
 | critical-instruction | Yes (at least peer + skills) | Add sparingly |
 | agent-hierarchy | Yes | Rarely |
 | principles | Yes | Add sparingly |
+| behavioural-authority | Yes | Rarely |
 | orientation | Yes | Update path if needed |
 | task-management | Yes | Match project approach |
 | development-workflow | Yes | Adjust to project needs |
 | test-driven-development | Yes | Adjust to testing philosophy |
-| finding-information | Yes | No |
 | definition-of-done | Yes | Add project-specific criteria |
 </section_checklist>

@@ -39,6 +39,17 @@ If you do not have that tool, you are a **sub-agent**:
 - **Always explain the why**: When writing docs, plans, tests, or prompts, include the reasoning. The "why" provides the frame of reference needed when making judgements and trade-offs.
 </principles>
 
+<behavioural-authority>
+When sources of truth conflict, follow this precedence:
+1. Passing tests (verified behaviour)
+2. Failing tests (intended behaviour)
+3. Explicit specs in docs/
+4. Code (implicit behaviour)
+5. External documentation
+
+**Fix-by-inspection is forbidden.** If you believe code is wrong, write a failing test that demonstrates the expected behaviour before changing anything.
+</behavioural-authority>
+
 <orientation>
 @README.md provides project overview and links to package documentation.
 </orientation>
@@ -61,10 +72,6 @@ Agents should proactively update TODO.md: mark items done (move to DONE.md), add
 5. **Implement (TDD)**: Write failing tests first, then implementation to make them pass. Never write implementation without a failing test.
 6. **Verify**: Run the full test suite again. All tests must pass before considering the work complete.
 7. **Clean up**: Delete the plan doc — executable tests are the authority on behaviour
-
-**Why baseline first?** You need to know the system works before changing it. A failing test suite is a blocker, not a "we'll fix it later."
-
-**Why delete plans?** Documentation drifts. Tests don't. If behaviour isn't covered by a test, it's not guaranteed.
 </development-workflow>
 
 <test-driven-development>
@@ -83,10 +90,6 @@ Agents should proactively update TODO.md: mark items done (move to DONE.md), add
 
 **If you can't verify the outcome, you haven't tested it.**
 </test-driven-development>
-
-<finding-information>
-> **Tests are the documentation.** Read tests to understand the behaviour of the system and its components. If behaviour isn't tested, it's not guaranteed.
-</finding-information>
 
 <definition-of-done>
 1. Tests pass
