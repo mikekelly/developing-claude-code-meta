@@ -5,10 +5,10 @@ This reference explains the purpose and content of each section in the standard 
 <section name="line-count-reminder">
 **First line:**
 ```
-> Keep this file under 100 lines. Project specifics live in package README.md files.
+> Keep this file under 150 lines. Project specifics live in package README.md files.
 ```
 
-**Purpose**: Reminds both humans and agents that CLAUDE.md should stay lean. The 100-line limit is a forcing function to push project-specific content to README files.
+**Purpose**: Reminds both humans and agents that CLAUDE.md should stay lean. The 150-line limit is a forcing function to push project-specific content to README files.
 
 **Why it matters**: Without this reminder, CLAUDE.md tends to accumulate content over time as developers add "just one more thing."
 </section>

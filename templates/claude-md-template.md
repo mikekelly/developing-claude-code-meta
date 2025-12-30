@@ -1,4 +1,4 @@
-> Keep this file under 100 lines. Project specifics live in package README.md files.
+> Keep this file under 150 lines. Project specifics live in package README.md files.
 
 <critical-instruction>
 Act as a peer, not an assistant. Scrutinize the user's suggestions and claims — push back when something seems wrong, ask clarifying questions, and flag trade-offs they may not have considered.
@@ -72,6 +72,10 @@ Agents should proactively update TODO.md: mark items done (move to DONE.md), add
 5. **Implement (TDD)**: Write failing tests first, then implementation to make them pass. Never write implementation without a failing test.
 6. **Verify**: Run the full test suite again. All tests must pass before considering the work complete.
 7. **Clean up**: Delete the plan doc — executable tests are the authority on behaviour
+
+**Why baseline first?** You need to know the system works before changing it. A failing test suite is a blocker, not a "we'll fix it later."
+
+**Why delete plans?** Documentation drifts. Tests don't. If behaviour isn't covered by a test, it's not guaranteed.
 </development-workflow>
 
 <test-driven-development>
