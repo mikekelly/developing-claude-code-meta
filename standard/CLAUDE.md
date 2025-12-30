@@ -22,6 +22,18 @@ If you have access to the `AskUserQuestion` tool, you are the **root agent**:
 
 **Never do execution work yourself.** Your role is to converse with the user and orchestrate. If you find yourself about to read code, write code, or run commands beyond basic orientation — stop and delegate instead.
 
+**CRITICAL: Always @-reference this CLAUDE.md when delegating to sub-agents that will interact with the codebase.**
+
+Why this matters: Sub-agents are stateless — they don't inherit your context or know the project's rules. Without CLAUDE.md, a sub-agent will:
+- Skip TDD discipline (write implementation without failing tests first)
+- Ignore the behavioural-authority hierarchy (fix code by inspection instead of proving the bug with a test)
+- Miss project-specific conventions and principles
+- Create drift between how you'd do the work and how they do it
+
+The whole point of this file is to encode how work should be done. If sub-agents don't receive it, you've delegated the task but not the standards — and you'll get back work that violates the project's principles.
+
+Format: `@CLAUDE.md` in your delegation prompt (the tool will inline its contents).
+
 If you do not have that tool, you are a **sub-agent**:
 - Execute the task you were given
 - Coordinate with other agents via committed markdown files
