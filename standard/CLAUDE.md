@@ -61,6 +61,7 @@ You were spawned by a main agent to execute a specific task.
 - **KISS**: Solve today's problem, not tomorrow's hypothetical. Don't over-engineer.
 - **Small diffs**: One feature or fix at a time. Focused changes are easier to review and debug.
 - **Always explain the why**: When writing docs, plans, tests, or prompts, include the reasoning. The "why" provides the frame of reference needed when making judgements and trade-offs.
+- **Leave it tidier**: When you encounter broken tooling, missing documentation, or confusing patterns — fix them. Don't work around problems; solve them so future agents (and humans) don't face the same friction.
 </principles>
 
 <behavioural-authority>
