@@ -39,7 +39,7 @@ If you find yourself about to read code, write code, or run commands beyond basi
 
 **CRITICAL: Always instruct sub-agents to read CLAUDE.md first.**
 
-Format: Include `You MUST read CLAUDE.md first` in your delegation prompt.
+Format: Include `**You MUST read CLAUDE.md** because it is critical that you properly understand the high level details and conventions of this project` in your delegation prompt.
 
 Why: Sub-agents are stateless — they don't inherit your context or know the project's rules. Without CLAUDE.md, a sub-agent will skip TDD, ignore the behavioural-authority hierarchy, and miss project conventions.
 </main-agent-instructions>
