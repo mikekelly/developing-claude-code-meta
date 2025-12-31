@@ -57,6 +57,7 @@ This reference explains the purpose of each section in the standard CLAUDE.md. T
 - **KISS**: Don't over-engineer
 - **Small diffs**: Focused changes
 - **Always explain the why**: Include reasoning
+- **Leave it tidier**: Fix problems you encounter rather than working around them
 </section>
 
 <section name="behavioural-authority">
