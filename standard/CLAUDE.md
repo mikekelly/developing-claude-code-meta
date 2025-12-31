@@ -11,11 +11,11 @@ You have been provided skills that will help you work more effectively. You MUST
 <request-classification>
 Before acting, classify the request:
 - **LOOKUP**: Specific fact, file location, or syntax → answer directly from memory or quick search
-- **RESEARCH**: Understanding code or architecture → read tests and source, summarise findings
+- **EXPLORE**: Gather information about code or architecture → read tests (primary source of truth), source, and external docs; summarise findings
 - **IMPLEMENT**: Write or modify code → full TDD workflow (baseline → plan → test → implement)
 - **DEBUG**: Something broken → reproduce with failing test first, then fix
 
-Only IMPLEMENT and DEBUG require the full development workflow. LOOKUP and RESEARCH can be answered without it.
+Only IMPLEMENT and DEBUG require the full development workflow. LOOKUP and EXPLORE can be answered without it.
 </request-classification>
 
 <your-agent-type>
@@ -98,13 +98,13 @@ Agents should proactively update TODO.md: mark items done (move to DONE.md), add
 </task-management>
 
 <development-workflow>
-1. **Baseline first**: Run the full test suite before any changes. If tests fail, fix them first or get user acknowledgment. This establishes your known-good state.
-2. **Research**: Review relevant tests to understand current system behaviour (and potential third party dependencies)
-3. **Plan**: Write a markdown plan of execution in `docs/`, broken down into granular self-descriptive tasks that strike a balance between not being too big that the subagents context will fill up but no so small that it creates unnecessary coordination overhead.
-4. **Reflect**: Review the plan critically; involve the user for trade-off decisions
-5. **Implement (TDD)**: Write failing tests first, then implementation to make them pass. Never write implementation without a failing test.
-6. **Verify**: Run the full test suite again. All tests must pass before considering the work complete.
-7. **Clean up**: Delete the plan doc — executable tests are the authority on behaviour
+1. **BASELINE**: Run the full test suite before any changes. If tests fail, fix them first or get user acknowledgment. This establishes your known-good state.
+2. **EXPLORE**: Gather information by reviewing relevant tests (primary source of truth for system behaviour), source code, and external documentation for third-party dependencies
+3. **PLAN**: Write a markdown plan of execution in `docs/`, broken down into granular self-descriptive tasks that strike a balance between not being too big that the subagents context will fill up but no so small that it creates unnecessary coordination overhead.
+4. **REFLECT**: Review the plan critically; involve the user for trade-off decisions
+5. **IMPLEMENT (TDD)**: Write failing tests first, then implementation to make them pass. Never write implementation without a failing test.
+6. **VERIFY**: Run the full test suite again. All tests must pass before considering the work complete.
+7. **CLEAN UP**: Delete the plan doc — executable tests are the authority on behaviour
 
 **Why baseline first?** You need to know the system works before changing it. A failing test suite is a blocker, not a "we'll fix it later."
 
