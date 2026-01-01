@@ -112,6 +112,14 @@ Agents should proactively update TODO.md: mark items done (move to DONE.md), add
 **Why delete plans?** Documentation drifts. Tests don't. If behaviour isn't covered by a test, it's not guaranteed.
 </development-workflow>
 
+<debugging-strategies>
+Whenever you're struggling to isolate or resolve a bug:
+1. **Hypothesise first** — form a theory before investigating; debugging is the scientific method applied to code
+2. **Binary search (wolf fence)** — systematically halve the search space until you isolate the problem; `git bisect` automates this across commits
+3. **Backtrace** — work backwards from the symptom to the root cause
+4. **Rubber duck** — explain the code line-by-line to spot hidden assumptions
+</debugging-strategies>
+
 <test-driven-development>
 **The cycle is: RED → GREEN → REFACTOR. Always.**
 
